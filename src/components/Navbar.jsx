@@ -21,7 +21,7 @@ const Navbar = () => {
         {["HOME", "COLLECTION", "ABOUT", "CONTACT"].map((link) => (
           <li key={link} className="relative">
             <NavLink
-              to={`/${link.toLowerCase()}`}
+              to={link === "HOME" ? "/" : `/${link.toLowerCase()}`}
               className={`${activeLink === link ? "text-gray-900" : ""}`}
               onClick={() => handleClick(link)}
             >
@@ -37,7 +37,7 @@ const Navbar = () => {
       {/* Navbar for icons like search, cart, etc. */}
       <div className="flex items-center gap-4">
         <img className="w-5" src={assets.search_icon} alt="search" />
-        
+
         {/* Dropdown menu for profile */}
         <div className="group relative">
           <img
@@ -64,7 +64,9 @@ const Navbar = () => {
         {/* Cart with item count */}
         <Link to="/cart" className="relative">
           <img className="w-5" src={assets.cart_icon} alt="cart-icon" />
-          <p className="absolute flex items-center text-sm justify-center right-[-13px] top-0 rounded-full w-5 h-4 bg-black text-white text-center">5</p>
+          <p className="absolute flex items-center text-sm justify-center right-[-13px] top-0 rounded-full w-5 h-4 bg-black text-white text-center">
+            5
+          </p>
         </Link>
 
         {/* Hamburger menu icon for small screens */}

@@ -10,16 +10,17 @@ import Collection from './pages/Collection'
 import Cart from './pages/Cart'
 import Orderplace from './pages/Orderplace'
 import Navbar from './components/Navbar'
+import Footer from './components/Footer'
 
 function App() {
  
 
   return (
     <>
-       <div className='px-4 sm:px-[5vw] md:px-[7vw] lg:px-[9vw]'>
+       <div className='px-4 sm:px-[2vw] md:px-[3vw] lg:px-[5vw]'>
           <Navbar/>
         <Routes>
-         <Route path='/home'  element={<Home/>} />
+         <Route path='/'  element={<Home/>} />
          <Route path='/login'  element={<Login/>} />
          <Route path='/contact'  element={<Contact/>} />
          <Route path='/product/:productId'  element={<Product/>} />
@@ -29,7 +30,7 @@ function App() {
          <Route path='/placeOrder' element={<Orderplace/>} />
 
         </Routes>
-     
+      <Footer/>
        </div>
     </>
   )
