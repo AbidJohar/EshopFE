@@ -1,18 +1,31 @@
 /* eslint-disable no-unused-vars */
 import React, { useState } from "react";
 import { assets } from "../assets/assets";
-import { NavLink, Link } from "react-router-dom";
+import { NavLink, Link, useLocation } from "react-router-dom";
+import { useContext } from "react";
+import { ShopContext } from "../context/ShopContext";
+import { useEffect } from "react";
 
 const Navbar = () => {
+  const { setShowSearch } = useContext(ShopContext);
   const [activeLink, setActiveLink] = useState("");
   const [isSideBarActive, setIsSideBarActive] = useState(false);
+  const [visibleSearch, setVisibleSearch] = useState(false);
+  const location = useLocation();
 
   const handleClick = (link) => {
     setActiveLink(link);
   };
 
+  useEffect(() => {
+    setVisibleSearch(false);
+    if (location.pathname === "/collection") {
+      setVisibleSearch(true);
+    }
+  }, [location]);
+
   return (
-    <div className="flex items-center justify-between py-5 font-medium">
+    <div className="flex items-center shadow-sm  justify-between py-5 font-medium">
       {/* Navbar logo */}
       <img src={assets.logo} className="w-32" alt="logo" />
 
@@ -36,8 +49,14 @@ const Navbar = () => {
 
       {/* Navbar for icons like search, cart, etc. */}
       <div className="flex items-center gap-4">
-        <img className="w-5" src={assets.search_icon} alt="search" />
-
+        {visibleSearch && (
+          <img
+            onClick={() => setShowSearch((prev) => !prev)}
+            className="w-5"
+            src={assets.search_icon}
+            alt="search"
+          />
+        )}
         {/* Dropdown menu for profile */}
         <div className="group relative">
           <img

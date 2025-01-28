@@ -11,6 +11,7 @@ import Cart from './pages/Cart'
 import Orderplace from './pages/Orderplace'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
+import SearchBar from './components/SearchBar'
 
 function App() {
  
@@ -19,6 +20,7 @@ function App() {
     <>
        <div className='px-4 sm:px-[2vw] md:px-[3vw] lg:px-[5vw]'>
           <Navbar/>
+          <SearchBar/>
         <Routes>
          <Route path='/'  element={<Home/>} />
          <Route path='/login'  element={<Login/>} />

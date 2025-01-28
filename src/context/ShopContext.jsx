@@ -1,30 +1,39 @@
 /* eslint-disable no-unused-vars */
-/* eslint-disable react-refresh/only-export-components */
 /* eslint-disable react/prop-types */
-import React from "react";
-import { createContext } from "react";
+import React, { createContext, useState } from "react";
 import { products } from "../assets/assets";
 
 // Create the context
 export const ShopContext = createContext();
 
- 
 const ShopContextProvider = ({ children }) => {
+  const currency = "PKR";
+  const delivery_charge = 150;
+  const [showSearch, setShowSearch] = useState(false);
+  const [search, setSearch] = useState("");
+  const [cartData, setCartData] = useState({});
 
-      const currency = "PKR";
-      const delivery_charge = 150;
-    // Add shared state or functions here as needed
+  // Function to filter products based on search term
+
+  // const addToCart = async ({productId, size})=>{
+
+  //    const copyCartData = 
+    
+
+  // }
+
   const value = {
-     products,
-     currency,
-     delivery_charge
-
+    products,
+    currency,
+    delivery_charge,
+    showSearch,
+    setShowSearch,
+    search,
+    setSearch,
   };
 
   return (
-    <ShopContext.Provider value={value}>
-      {children}
-    </ShopContext.Provider>
+    <ShopContext.Provider value={value}>{children}</ShopContext.Provider>
   );
 };
 
