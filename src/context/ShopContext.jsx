@@ -2,6 +2,7 @@
 /* eslint-disable react/prop-types */
 import React, { createContext, useState } from "react";
 import { products } from "../assets/assets";
+import { useEffect } from "react";
 
 // Create the context
 export const ShopContext = createContext();
@@ -11,16 +12,31 @@ const ShopContextProvider = ({ children }) => {
   const delivery_charge = 150;
   const [showSearch, setShowSearch] = useState(false);
   const [search, setSearch] = useState("");
-  const [cartData, setCartData] = useState({});
+  const [cartItems, setCartItems] = useState({});
 
-  // Function to filter products based on search term
-
-  // const addToCart = async ({productId, size})=>{
-
-  //    const copyCartData = 
+ 
+  
+  const addToCart = async (itemId, size) => {
+    let cartData = structuredClone(cartItems);
+    console.log("item id:", itemId, "size:", size);
     
+    if (!cartData[itemId]) {
+        cartData[itemId] = {}; // Initialize itemId as an object
+    }
+    
+    if (!cartData[itemId][size]) {
+        cartData[itemId][size] = 1;  // Start count from 1
+    } else {
+        cartData[itemId][size] += 1; // Increment count
+    }
 
-  // }
+    setCartItems(cartData);
+};
+ useEffect(()=>{
+  console.log(cartItems);
+  
+ },[cartItems])
+
 
   const value = {
     products,
@@ -30,6 +46,7 @@ const ShopContextProvider = ({ children }) => {
     setShowSearch,
     search,
     setSearch,
+    addToCart
   };
 
   return (
