@@ -6,14 +6,14 @@ import { assets } from "../assets/assets";
 import RelatedProduct from "../components/RelatedProduct";
 
 const Product = () => {
-  const { products, currency, addToCart } = useContext(ShopContext);
+  const { products, currency, addToCart,setNumOfCartItems } = useContext(ShopContext);
   const { productId } = useParams();
   const [productData, setProductData] = useState(null);
   const [image, setImage] = useState("");
   const [size, setSize] = useState("");
-  console.log("size", size);
-
+ 
   useEffect(() => {
+    window.scrollTo(0, 0); 
     const product = products.find((item) => item._id === productId);
     if (product) {
       setProductData(product);
@@ -82,12 +82,6 @@ const Product = () => {
           {/* Add to Cart Button */}
           <button
             onClick={() => {
-              console.log(productData._id);
-              
-              if (!size) {
-                alert("Please select a size!");
-                return;
-              }
               addToCart(productData._id, size);
             }}
             className="mt-6 bg-black text-white px-6 py-3 rounded-sm hover:bg-gray-800"

@@ -3,6 +3,7 @@
 import React, { createContext, useState } from "react";
 import { products } from "../assets/assets";
 import { useEffect } from "react";
+import { toast } from "react-toastify";
 
 // Create the context
 export const ShopContext = createContext();
@@ -14,11 +15,36 @@ const ShopContextProvider = ({ children }) => {
   const [search, setSearch] = useState("");
   const [cartItems, setCartItems] = useState({});
 
- 
+
+// --------( Get total count of the item functionality)-----------------
+
+ const getTotalCount = ()=>{
+    let totalcount = 0
+
+  for(const items in cartItems){
+    for(const item in cartItems[items]){
+
+     try {
+       if(cartItems[items][item] > 0){
+           totalcount += cartItems[items][item];
+       }
+     } catch (error) {
+      console.log("Error form getTotalcount:",error);
+      
+     }
+    }
+  }
+   return totalcount;
+ }
+
+ // --------( Add to cart Functionality)-----------------
   
   const addToCart = async (itemId, size) => {
+
     let cartData = structuredClone(cartItems);
-    console.log("item id:", itemId, "size:", size);
+    if(!size){
+      toast.error("Please select Product size");
+    } 
     
     if (!cartData[itemId]) {
         cartData[itemId] = {}; // Initialize itemId as an object
@@ -32,10 +58,16 @@ const ShopContextProvider = ({ children }) => {
 
     setCartItems(cartData);
 };
- useEffect(()=>{
-  console.log(cartItems);
+
+// --------( Quantity update or remove  Functionality)-----------------
   
- },[cartItems])
+ const quantityUpate = async (itemId,size,quantity) => {
+  const cartData = structuredClone(cartItems);
+
+  cartData[itemId][size]= quantity;
+
+  setCartItems(cartData);
+ }
 
 
   const value = {
@@ -44,9 +76,12 @@ const ShopContextProvider = ({ children }) => {
     delivery_charge,
     showSearch,
     setShowSearch,
+    cartItems,
     search,
     setSearch,
-    addToCart
+    addToCart,
+    quantityUpate,
+    getTotalCount
   };
 
   return (

@@ -7,7 +7,7 @@ import { ShopContext } from "../context/ShopContext";
 import { useEffect } from "react";
 
 const Navbar = () => {
-  const { setShowSearch } = useContext(ShopContext);
+  const { setShowSearch,getTotalCount } = useContext(ShopContext);
   const [activeLink, setActiveLink] = useState("");
   const [isSideBarActive, setIsSideBarActive] = useState(false);
   const [visibleSearch, setVisibleSearch] = useState(false);
@@ -27,7 +27,9 @@ const Navbar = () => {
   return (
     <div className="flex items-center shadow-sm  justify-between py-5 font-medium">
       {/* Navbar logo */}
+      <NavLink to='/'>
       <img src={assets.logo} className="w-32" alt="logo" />
+      </NavLink>
 
       {/* Navbar anchor tags for linking */}
       <ul className="hidden sm:flex gap-5 text-md text-gray-600">
@@ -84,7 +86,7 @@ const Navbar = () => {
         <Link to="/cart" className="relative">
           <img className="w-5" src={assets.cart_icon} alt="cart-icon" />
           <p className="absolute flex items-center text-sm justify-center right-[-13px] top-0 rounded-full w-5 h-4 bg-black text-white text-center">
-            5
+            {getTotalCount()}
           </p>
         </Link>
 
