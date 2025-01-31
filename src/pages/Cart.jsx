@@ -3,6 +3,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { ShopContext } from "../context/ShopContext";
 import Title from "../components/Title";
 import { assets } from "../assets/assets";
+import CartTotal from "../components/CartTotal";
 
 const Cart = () => {
   const { products, currency, cartItems, quantityUpate } =
@@ -53,7 +54,7 @@ const Cart = () => {
                   alt="image"
                 />
                 <div>
-                  <p className="text-xl text-black font-bold">
+                  <p className="text-xl text-black ">
                     {productData.name}
                   </p>
                   <div className="flex items-center gap-4 mt-2">
@@ -86,6 +87,7 @@ const Cart = () => {
           );
         })}
       </div>
+      <CartTotal/>
     </div>
   );
 };

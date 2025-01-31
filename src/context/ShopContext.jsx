@@ -70,6 +70,33 @@ const ShopContextProvider = ({ children }) => {
  }
 
 
+ 
+// --------( Cart Total amount Functionality)-----------------
+
+const getTotalAmount = () =>{
+
+  let  totalAmount = 0;
+
+  for(const items in cartItems){
+     let productInfo = products.find((pro) => pro._id === items)
+        for ( const item in cartItems[items]){
+                 try {
+                    if(cartItems[items][item] > 0){
+                       totalAmount += cartItems[items][item] * productInfo.price;
+                    }
+                 } catch (error) {
+                   console.log("Error from Get cart Total amount:",error);
+                   
+                 }
+        }
+
+  }
+
+ return totalAmount;
+
+}
+
+
   const value = {
     products,
     currency,
@@ -81,7 +108,8 @@ const ShopContextProvider = ({ children }) => {
     setSearch,
     addToCart,
     quantityUpate,
-    getTotalCount
+    getTotalCount,
+    getTotalAmount
   };
 
   return (
