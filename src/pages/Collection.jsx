@@ -65,16 +65,16 @@ const Collection = () => {
       <div className="p-2 shadow-sm h-44 rounded-md">
         <h2 className="text-xl font-semibold mb-4">Filter</h2>
         <div className="space-y-2">
-          {["Men", "Women", "Kids"].map((cat) => (
-            <div key={cat} className="flex items-center">
+          {["Men", "Women", "Kids"].map((cate) => (
+            <div key={cate} className="flex items-center">
               <input
                 type="checkbox"
-                name={cat}
-                checked={category[cat]}
+                name={cate}
+                checked={category[cate]}
                 onChange={handleCheckboxChange}
                 className="mr-2"
               />
-              <label className="text-gray-700">{cat}</label>
+              <label className="text-gray-700">{cate}</label>
             </div>
           ))}
         </div>
@@ -107,7 +107,7 @@ const Collection = () => {
                 key={pro._id}
                 id={pro._id}
                 name={pro.name}
-                image={pro.image}
+                image={pro.image[0]}
                 price={pro.price}
               />
             ))

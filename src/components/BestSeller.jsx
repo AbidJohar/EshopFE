@@ -14,10 +14,12 @@ const BestSeller = () => {
 
 
   useEffect(()=>{
-     
-   const Sellerproducts =  products.filter((pro) => (pro.bestseller));
-       
-   setBestSellers(Sellerproducts.slice(0,5));
+            //  console.log("products", products);
+             
+   const Sellerproducts =  products?.filter((pro) => (pro.bestSeller));
+        // console.log(Sellerproducts);
+        
+   setBestSellers(Sellerproducts);
 
   },[products])
 
@@ -31,7 +33,7 @@ const BestSeller = () => {
         <div className='grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-5 mt-4 mb-3'>
          {
           bestSellers.map((pro) => (
-             <ProductCard key={pro._id} name={pro.name} id={pro._id} image={pro.image} price={pro.price} />
+             <ProductCard key={pro._id} name={pro.name} id={pro._id} image={pro.image[0]} price={pro.price} />
           ))
 
          }
