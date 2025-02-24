@@ -6,11 +6,12 @@ import { assets } from "../assets/assets";
 import RelatedProduct from "../components/RelatedProduct";
 
 const Product = () => {
-  const { products, currency, addToCart,setNumOfCartItems } = useContext(ShopContext);
+  const { products, currency, addToCart,setNumOfCartItems,token } = useContext(ShopContext);
   const { productId } = useParams();
   const [productData, setProductData] = useState(null);
   const [image, setImage] = useState("");
   const [size, setSize] = useState("");
+  
  
   useEffect(() => {
     window.scrollTo(0, 0); 

@@ -5,6 +5,7 @@ import React, { createContext, useState } from "react";
 import { useEffect } from "react";
 import { toast } from "react-toastify";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 // Create the context
 export const ShopContext = createContext();
@@ -19,6 +20,7 @@ const ShopContextProvider = ({ children }) => {
   const [cartItems, setCartItems] = useState({});
   const [products, setProducts] = useState([]);
   const [token, setToken] = useState(() => localStorage.getItem("token") || "");
+  const navigate = useNavigate();
 
 
 // --------( Get total count of the item functionality)-----------------
@@ -51,6 +53,9 @@ const ShopContextProvider = ({ children }) => {
       toast.error("Please select Product size");
       return 0;
     } 
+    if(!token){
+      navigate('/login')
+    }
     
     if (!cartData[itemId]) {
         cartData[itemId] = {}; // Initialize itemId as an object
