@@ -87,6 +87,11 @@ const Orderplace = () => {
            }
         break; 
       }
+      case 'Razorpay':
+        {
+          console.log("razorpay method");
+          break;
+        }
      
       default:
         break;
@@ -95,7 +100,7 @@ const Orderplace = () => {
      
     } catch (error) {
       console.log("Error from onSubmithander,", error);
-      
+      toast.error(error.message);
     }
 
  }
@@ -290,9 +295,10 @@ const Orderplace = () => {
               </span>
             </div>
           </div>
+            <button className="py-2 px-32 mt-4 text-white bg-black rounded-sm" type="submit">Place Order</button>
         </div>
       </div>
-      <button type="submit">Place Order</button>
+    
     </form>
   );
 };
