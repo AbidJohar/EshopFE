@@ -33,8 +33,7 @@ const fetchUserOrders = async ()=>{
                    allOrders.push(item)
                 })
                 
-             })
-             console.log("all orders:",allOrders);
+             });
              
             setOrders(allOrders);
          }
@@ -57,15 +56,21 @@ const fetchUserOrders = async ()=>{
 
   return (
     <div className="mt-10 px-4 sm:px-8">
+      <div className='w-full flex items-center justify-between'>
       <div className="text-xl sm:text-2xl font-semibold">
         <Title text1={"MY"} text2={"ORDERS"} />
       </div>
-
-      <div className="mt-5 space-y-6">
+      
+      
+      <button onClick={fetchUserOrders} className="text-sm sm:text-base border-[2px] border-gray-200 py-2 px-4 rounded-sm  font-medium text-blue-600 cursor-pointer">
+              Track the Order
+            </button>
+            </div>
+      <div className="mt-5 space-y-3">
         {orders.map((item) => (
           <div
             key={item._id}
-            className="border-t border-b border-gray-300 py-2 rounded-lg shadow-sm grid grid-cols-1 sm:grid-cols-[4fr_1.5fr_1fr] gap-4 items-center"
+            className="border-t border-b border-gray-300 py-2 rounded-lg shadow-sm grid grid-cols-1 sm:grid-cols-[4fr_1.5fr] gap-4 items-center"
           >
             <div className="flex items-start gap-4 sm:gap-6">
               <img
@@ -92,9 +97,6 @@ const fetchUserOrders = async ()=>{
               {item.status}
             </div>
 
-            <div className="text-sm sm:text-base  font-medium text-blue-600 cursor-pointer">
-              Track the Order
-            </div>
           </div>
         ))}
       </div>
